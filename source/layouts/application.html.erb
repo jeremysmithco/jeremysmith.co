@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Bent on Creation</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="description" content="" />
+
+    <%= favicon_tag "images/favicon.png" %>
+    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+
+    <!--[if ! lte IE 6]><!-->
+      <%= stylesheet_link_tag "all" %>
+    <!--<![endif]-->
+
+    <!--[if lte IE 6]>
+      <link rel="stylesheet" href="http://universal-ie6-css.googlecode.com/files/ie6.1.1.css" media="screen, projection">
+    <![endif]-->
+
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-18614613-1']);
+      _gaq.push(['_trackPageview']);
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+
+    <script type="text/javascript" src="http://use.typekit.com/etp2hvm.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.0.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <%= javascript_include_tag "all" %>
+  </head>
+
+  <body>
+
+    <header role="banner">
+      <div class="wrapper">
+        <div id="tagline"><a href="/">Jeremy A. Smith is <em>Bent on Creation</em></a></div>
+
+        <div id="location">Currently based in Greenville, SC</div>
+
+        <div id="close"><a href="#">Close</a></div>
+        <div id="hidden">
+        </div>
+        <div style="clear:both;"></div>
+      </div>
+    </header>
+
+    <div id="container">
+      <div class="container-top"></div>
+      <div class="container-wrapper">
+        <div class="wrapper">
+
+          <aside>
+            <nav role="navigation">
+              <a href="/" id="logo"></a>
+
+              <ul id="main">
+                <li class="current"><a href="/">Blog</a></li>
+                <li><a href="#" id="about">About</a></li>
+                <li><a href="/work">Work</a></li>
+                <li><a href="mailto:jeremy@bentoncreation.com">Email</a></li>
+              </ul>
+            </nav>
+
+            <div class="description">
+                <h2>About Jeremy</h2>
+                <div class="me"></div>
+                <p>I’m a web designer/developer hybrid. I love working with people who are making the world a better place.</p>
+            </div>
+          </aside>
+
+          <article>
+            <%= yield %>
+          </article>
+
+          <footer>
+            <p>Copyright &copy; 2016. <a href="/">Bent on Creation</a>. All rights reserved. <a href="/rss">Subscribe via RSS</a></p>
+          </footer>
+
+        </div>
+      </div>
+    </div>
+
+  </body>
+</html>

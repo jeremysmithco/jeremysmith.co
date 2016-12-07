@@ -1,0 +1,12 @@
+$(document).ready(function() {
+
+  $("#about").click(function(event){
+    $('#hidden').load('/about');
+    $('#container').animate({ marginTop: "500px" }, 500);
+  });
+
+  $("#close a").click(function(event){
+    $('#container').animate({ marginTop: "36px" }, 500);
+  });
+
+});
