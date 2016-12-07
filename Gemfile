@@ -7,3 +7,4 @@ gem 'middleman-sprockets', '>= 4.0.0'
 gem 'middleman-deploy', git: 'https://github.com/bentoncreation/middleman-deploy.git', branch: :fix_user_assignment
 
 gem 'redcarpet'
+gem 'nokogiri'

@@ -21,6 +21,14 @@ activate :blog do |blog|
   blog.name = "ruby"
   blog.prefix = "ruby"
   blog.layout = "layouts/blog"
+  blog.permalink = "{year}-{month}-{day}-{title}.html"
+end
+
+activate :blog do |blog|
+  blog.name = "web"
+  blog.prefix = "web"
+  blog.layout = "layouts/blog"
+  blog.permalink = "{year}-{month}-{day}-{title}.html"
 end
 
 page '/about.html', layout: false

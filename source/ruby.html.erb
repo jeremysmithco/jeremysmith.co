@@ -1,6 +1,4 @@
-<% articles = (blog("ruby").articles + blog("web").articles).sort_by(&:date).reverse %>
-
-<% articles.each do |article| %>
+<% blog("ruby").articles.each do |article| %>
   <div class="post">
     <h1><%= link_to article.title, article.path %></h1>
 
