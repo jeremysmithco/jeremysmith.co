@@ -6,14 +6,14 @@ header[role="banner"] {
   left: 0;
   z-index: 0;
   width: 100%;
-  background: #eb3a3a image-url("shadow.png") repeat-x 0 0;
-  @include image-2x(image-path("shadow2x.png"), 50px, 5px);
+  background: #eb3a3a image-url("layout/shadow.png") repeat-x 0 0;
+  @include image-2x(image-path("layout/shadow2x.png"), 50px, 5px);
   display: block;
 
   .wrapper {
     margin-top: 60px;
-    background: image-url("red_back.png") repeat-y 100% 0;
-    @include image-2x(image-path("red_back2x.png"), 880px, 5px);
+    background: image-url("layout/red_back.png") repeat-y 100% 0;
+    @include image-2x(image-path("layout/red_back2x.png"), 880px, 5px);
   }
 }
 
@@ -34,8 +34,8 @@ header[role="banner"] {
 .container-top {
   width: 100%;
   min-height: 14px;
-  background: image-url("edge.png") repeat-x;
-  @include image-2x(image-path("edge2x.png"), 50px, 14px);
+  background: image-url("layout/edge.png") repeat-x;
+  @include image-2x(image-path("layout/edge2x.png"), 50px, 14px);
 }
 
 .container-wrapper {
@@ -45,8 +45,8 @@ header[role="banner"] {
   padding-top: 100px;
 
   .wrapper {
-    background: image-url("back.png") repeat-y 100% 0;
-    @include image-2x(image-path("back2x.png"), 880px, 5px);
+    background: image-url("layout/back.png") repeat-y 100% 0;
+    @include image-2x(image-path("layout/back2x.png"), 880px, 5px);
   }
 }
 
@@ -77,8 +77,8 @@ header[role="banner"] {
   float: right;
 
   a {
-    background: image-url("close.png") no-repeat 100% 50%;
-    @include image-2x(image-path("close2x.png"), 12px, 12px);
+    background: image-url("layout/close.png") no-repeat 100% 50%;
+    @include image-2x(image-path("layout/close2x.png"), 12px, 12px);
     padding-right: 16px;
     border: 0;
     color: #fff;
@@ -100,8 +100,8 @@ nav[role="navigation"] {
 }
 
 #logo {
-  background: image-url("logo.png") no-repeat 0 0;
-  @include image-2x(image-path("logo2x.png"), 105px, 91px);
+  background: image-url("layout/logo.png") no-repeat 0 0;
+  @include image-2x(image-path("layout/logo2x.png"), 105px, 91px);
   display: block;
   width: 105px;
   height: 91px;
@@ -186,13 +186,13 @@ div#hidden aside {
     height: 210px;
     margin: 10px 0;
     cursor: crosshair;
-    background: image-url("jeremy_off.png") no-repeat 0 0;
-    @include image-2x(image-path("jeremy_off2x.png"), 210px, 210px);
+    background: image-url("layout/jeremy_off.png") no-repeat 0 0;
+    @include image-2x(image-path("layout/jeremy_off2x.png"), 210px, 210px);
     transition: background-image 0.1s ease-in-out;
 
     &:hover {
-      background: image-url("jeremy_on.png") no-repeat 0 0;
-      @include image-2x(image-path("jeremy_on2x.png"), 210px, 210px);
+      background: image-url("layout/jeremy_on.png") no-repeat 0 0;
+      @include image-2x(image-path("layout/jeremy_on2x.png"), 210px, 210px);
     }
   }
 
@@ -222,23 +222,23 @@ div#hidden aside {
   }
 
   a.dribbble {
-    background: image-url("dribbble.png") no-repeat 0 0;
-    @include image-2x(image-path("dribbble2x.png"), 20px, 20px);
+    background: image-url("layout/dribbble.png") no-repeat 0 0;
+    @include image-2x(image-path("layout/dribbble2x.png"), 20px, 20px);
   }
 
   a.twitter {
-    background: image-url("twitter.png") no-repeat 0 0;
-    @include image-2x(image-path("twitter2x.png"), 20px, 20px);
+    background: image-url("layout/twitter.png") no-repeat 0 0;
+    @include image-2x(image-path("layout/twitter2x.png"), 20px, 20px);
   }
 
   a.github {
-    background: image-url("github.png") no-repeat 0 0;
-    @include image-2x(image-path("github2x.png"), 20px, 20px);
+    background: image-url("layout/github.png") no-repeat 0 0;
+    @include image-2x(image-path("layout/github2x.png"), 20px, 20px);
   }
 
   a.linkedin {
-    background: image-url("linkedin.png") no-repeat 0 0;
-    @include image-2x(image-path("linkedin2x.png"), 20px, 20px);
+    background: image-url("layout/linkedin.png") no-repeat 0 0;
+    @include image-2x(image-path("layout/linkedin2x.png"), 20px, 20px);
   }
 
 
@@ -334,8 +334,8 @@ img.fluid {
 }
 
 .me {
-  background: image-url("me.jpg") no-repeat 0 0;
-  @include image-2x(image-path("me2x.jpg"), 210px, 140px);
+  background: image-url("layout/me.jpg") no-repeat 0 0;
+  @include image-2x(image-path("layout/me2x.jpg"), 210px, 140px);
   width: 210px;
   height: 140px;
   margin: 10px 0;

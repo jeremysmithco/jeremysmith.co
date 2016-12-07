@@ -17,6 +17,12 @@ set :js_dir, "assets/javascripts"
 set :images_dir, "assets/images"
 set :layout, "layouts/application"
 
+activate :blog do |blog|
+  blog.name = "ruby"
+  blog.prefix = "ruby"
+  blog.layout = "layouts/blog"
+end
+
 page '/about.html', layout: false
 
 configure :build do
