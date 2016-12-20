@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Jeremy Smith</title>
+    <title><%= current_page.data.title || "" %> - Jeremy Smith</title>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
@@ -65,7 +65,7 @@
               <a href="/" class="logo"></a>
 
               <ul id="main">
-                <li class="current"><a href="/">Blog</a></li>
+                <li class="current"><a href="/">Home</a></li>
                 <li><a href="#" id="about">About</a></li>
                 <li><a href="/work">Work</a></li>
                 <li><a href="mailto:jeremy@bentoncreation.com">Email</a></li>
