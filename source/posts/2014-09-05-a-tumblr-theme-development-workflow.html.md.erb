@@ -1,0 +1,45 @@
+---
+title: A Tumblr Theme Development Workflow
+date: 2014-09-05 00:15 UTC
+tags: ruby
+---
+
+This site has been running on Tumblr for a while now and, while I love using Tumblr for posting content, I’ve found theme development to be frustrating and tedious, particularly with trying to manage asset files.
+
+I’m used to single-command site deployment, so going back to copy-and-paste and manual file uploads is painful.
+
+<%= image_tag "blog/tumblr_inline_nbeu16ivU91qz7n3m.png" %>
+
+I thought there must be a better way, so I Googled around and came across [Tumblargh](https://github.com/jasonwebster/tumblargh), a Ruby gem that works on top of [Middleman](http://middlemanapp.com/) and simplifies theme development by parsing Tumblr themes and pulling in your own site’s content via Tumblr’s API.
+
+Tumblargh makes it much easier to test a template before releasing it, but it’s still very tedious to update the HTML template and then re-upload all your stylesheet, javascript and image assets.
+
+This is where I took a different route. Rather than rely on Tumblr to handle all my stylesheet, javascript and image assets, I decided it would be better if I just hosted those myself under a separate domain: assets.bentoncreation.com.
+
+Using the [middleman-deploy](https://github.com/karlfreeman/middleman-deploy) gem, I am able to run a single-command deploy of my Tumblargh/Middleman site to assets.bentoncreation.com and then I only have to copy and paste the index.html from /build to my Tumblr HTML template.
+
+Here’s my deploy config:
+
+```
+activate :deploy do |deploy|
+  deploy.build_before = true
+  deploy.method = :rsync
+  deploy.user   = "deploy"
+  deploy.host   = "myhost.com"
+  deploy.path   = "/var/www/assets.bentoncreation"
+  deploy.clean = true
+end
+```
+
+I hit one snag with this strategy. My Middleman HTML template and stylesheets are referencing relative paths, rather than the assets.bentoncreation.com host. So I added an asset_host variable with my host to the build config and overrode the asset_path method to include the full URL of my asset_host:
+
+```
+set :asset_host, 'http://assets.bentoncreation.com'
+helpers do
+  def asset_path(kind, source)
+    "#{asset_host}#{super}"
+  end
+end
+```
+
+Now, as I’m making site changes, I can simply run `bundle update middleman deploy` and then copy and paste the contents of /build/index.html to my Tumblr HTML template.

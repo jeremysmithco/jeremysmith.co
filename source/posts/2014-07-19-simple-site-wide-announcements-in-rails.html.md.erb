@@ -1,0 +1,105 @@
+---
+title: Simple Site-wide Announcements in Rails
+date: 2014-07-19 22:19 UTC
+tags: ruby
+---
+
+I recently needed the ability to post site-wide announcements on a [multi-tenant Rails application](/post/74392403766/devise-cas-using-devise-cas-authenticatable-and) I work on, to announce scheduled downtime. Most solutions I’ve seen call for the creation of an announcements model and database table. It seemed a bit much to be querying an announcements table with every page request, when announcements would only be used occassionally. Thankfully, in my case, I already have a site model in my multi-tenant app, with a record for each site instance. The current site record is already queried with every request for various attributes about that site, so adding an announcement field to it was simple and kept me from adding another database query.
+
+If you’re in a similar situation, here’s how you do it…
+
+1\. Create a migration adding an announcement string field to your site model:
+
+```
+class AddSiteAnnouncement < ActiveRecord::Migration
+  def change
+    add_column :sites, :announcement, :string
+  end
+end
+```
+
+2\. Add an announcement partial to your layout:
+
+```
+<%%= render "announcements/announcement" %>
+```
+
+In my multi-tenant application, current_site provides the site context in every request. Add a check to see if the announcement should be displayed, passing a signed cookie for the site, called :hidden_announcement. (The cookie will be set with the timestamp of the Site model’s updated_at timetstamp if the “Close” link is clicked.) If the announcement should be shown, display it and a “Close” link.
+
+```
+<%% if current_site.show_announcement?(cookies.signed[:hidden_announcement]) %>
+  <div class="announcement">
+    <p>
+      <%%= current_site.announcement.html_safe %>
+      <%%= link_to "Close", hide_announcement_path, remote: true %>
+    </p>
+  </div>
+<%% end %>
+```
+
+3\. Add the announcement field to attr_accessible and create the custom method show_announcement? which checks for the presence of an announcement and checks to see if the :hidden_announcement cookie’s timestamp doesn’t match the site model’s updated_at field:
+
+```
+class Site < ActiveRecord::Base
+  attr_accessible :announcement
+
+  def show_announcement?(hidden_announcement_timestamp)
+    announcement.present? && hidden_announcement_timestamp.to_i != updated_at.to_i
+  end
+end
+```
+
+4\. Create the announcements controller and hide action, which will create the signed cookie :hidden_announcement with the site’s current updated_at timestamp and a 1-week expiration:
+
+```
+class AnnouncementsController < ApplicationController
+  skip_before_filter :authenticate_user!
+
+  def hide
+    cookies.signed[:hidden_announcement] = {
+      :value => current_site.updated_at.to_i,
+      :expires => 1.week.from_now,
+    }
+
+    respond_to do |format|
+      format.html { redirect_to :back }
+      format.js
+    end
+  end
+end
+```
+
+5\. Add the hide announcement path to routes:
+
+```
+match 'announcements/hide', to: 'announcements#hide', as: 'hide_announcement'
+```
+
+6\. Add a hide.js.erb for the JS response, sliding up the announcement banner:
+
+```
+$(".announcement").slideUp();
+```
+
+7\. And don’t forget to apply some styling to that announcement banner:
+
+```
+.announcement {
+  background: #333;
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 0;
+
+  p {
+    margin: 0;
+    text-align: center;
+  }
+}
+```
+
+And that’s it! The :hidden_announcement cookie is set to the current updated_at timestamp of the site model. If the site model is modified later with a new announcement message, the updated_at timestamp will no longer match the cookie, and the new announcement will be shown.
+
+Here are some other site-wide announcement implementations I used for inspiration:
+
+* https://github.com/railscasts/103-site-wide-announcements-revised/
+* https://github.com/thoughtbot/paul_revere

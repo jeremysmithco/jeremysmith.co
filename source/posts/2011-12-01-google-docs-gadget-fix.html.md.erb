@@ -1,0 +1,31 @@
+---
+title: Google Docs gadget fix
+date: 2011-12-01 14:43 UTC
+tags: web
+---
+
+<%= image_tag "blog/tumblr_inline_michw49eg21qz4rgp.png", class: "right" %>
+
+Anyone else notice a problem in the new Gmail, with the Google Docs gadget not showing up properly in Firefox?
+
+Here's a quick fix that worked for me, using the awesome Stylish extension.
+
+1\. Install Stylish if you haven't already
+
+<%= image_tag "blog/tumblr_inline_michviCFdL1qz4rgp.png" %>
+
+2\. Go to Gmail, in the bottom left-hand corner, click the Stylish icon > Write new style > For mail.google.com...
+
+<%= image_tag "blog/tumblr_inline_michuyBCs61qz4rgp.png" %>
+
+3\. Add a name. Then, inside the brackets, add the following:
+
+```
+#remote_iframe_0 { height:160px !important; }
+```
+
+So it looks like this:
+
+<%= image_tag "blog/tumblr_inline_michsxSR3v1qz4rgp.png" %>
+
+4\. Save the style, et voilà!
