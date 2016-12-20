@@ -1,16 +1,32 @@
-<% articles = (blog("ruby").articles + blog("web").articles + blog("personal").articles).sort_by(&:date).reverse %>
+---
+pageable: true
+---
 
-<% articles.each do |article| %>
+<% page_articles.each do |article| %>
   <div class="post">
-    <h1><%= link_to article.title, article.path %></h1>
+    <h1><%= link_to article.title, article.url %></h1>
 
     <%= article.summary %>
 
-    <p><%= link_to 'Read more…', article.path %></p>
+    <p><%= link_to 'Read more…', article.url %></p>
 
     <p class="meta">
       Posted
-      <%= link_to article.date.strftime("%B %e, %Y at %l:%M %P"), article.path %>
+      <%= link_to article.date.strftime("%B %e, %Y at %l:%M %P"), article.url %>
     </p>
   </div>
 <% end %>
+
+<div class="navigation">
+  <div class="left">
+    <% if prev_page.present? %>
+      <%= link_to("« Newer posts", prev_page.url) %>
+    <% end %>
+  </div>
+
+  <div class="right">
+    <% if next_page.present? %>
+      <%= link_to("Older posts »", next_page.url) %>
+    <% end %>
+  </div>
+</div>

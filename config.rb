@@ -1,3 +1,6 @@
+# Fix for "comparison of String with :current_path failed" error
+Tilt::SYMBOL_ARRAY_SORTABLE = false
+
 page '/*.xml', layout: false
 page '/*.json', layout: false
 page '/*.txt', layout: false
@@ -5,6 +8,7 @@ page '/*.txt', layout: false
 activate :directory_indexes
 activate :sprockets
 
+set :relative_links, false
 set :markdown_engine, :redcarpet
 set :markdown, no_intra_emphasis: true, tables: true, autolink: true,
                gh_blockcode: true, fenced_code_blocks: true,
@@ -20,24 +24,12 @@ set :images_dir, "assets/images"
 set :layout, "layouts/application"
 
 activate :blog do |blog|
-  blog.name = "ruby"
-  blog.prefix = "ruby"
+  blog.name = "posts"
+  blog.prefix = "posts"
   blog.layout = "layouts/blog"
   blog.permalink = "{year}-{month}-{day}-{title}.html"
-end
-
-activate :blog do |blog|
-  blog.name = "web"
-  blog.prefix = "web"
-  blog.layout = "layouts/blog"
-  blog.permalink = "{year}-{month}-{day}-{title}.html"
-end
-
-activate :blog do |blog|
-  blog.name = "personal"
-  blog.prefix = "personal"
-  blog.layout = "layouts/blog"
-  blog.permalink = "{year}-{month}-{day}-{title}.html"
+  blog.paginate = true
+  blog.per_page = 10
 end
 
 page '/about.html', layout: false
