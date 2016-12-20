@@ -1,6 +1,6 @@
 ---
 title: Active Record enum form select
-date: 2015-02-12 18:38 UTC
+date: 2015-02-12 13:38 UTC
 tags:
 ---
 

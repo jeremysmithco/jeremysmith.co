@@ -1,6 +1,6 @@
 ---
 title: How to add High Voltage static pages to your sitemap file
-date: 2015-03-11 22:45 UTC
+date: 2015-03-11 17:45 UTC
 tags:
 ---
 
