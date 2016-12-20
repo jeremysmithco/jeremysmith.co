@@ -8,7 +8,7 @@ I recently needed the ability to post site-wide announcements on a [multi-tenant
 
 If you’re in a similar situation, here’s how you do it…
 
-1. Create a migration adding an announcement string field to your site model:
+1\. Create a migration adding an announcement string field to your site model:
 
 ```
 class AddSiteAnnouncement < ActiveRecord::Migration
@@ -18,7 +18,7 @@ class AddSiteAnnouncement < ActiveRecord::Migration
 end
 ```
 
-2. Add an announcement partial to your layout:
+2\. Add an announcement partial to your layout:
 
 ```
 <%%= render "announcements/announcement" %>
@@ -37,19 +37,19 @@ In my multi-tenant application, current_site provides the site context in every 
 <%% end %>
 ```
 
-3. Add the announcement field to attr_accessible and create the custom method show_announcement? which checks for the presence of an announcement and checks to see if the :hidden_announcement cookie’s timestamp doesn’t match the site model’s updated_at field:
+3\. Add the announcement field to attr_accessible and create the custom method show_announcement? which checks for the presence of an announcement and checks to see if the :hidden_announcement cookie’s timestamp doesn’t match the site model’s updated_at field:
 
 ```
 class Site < ActiveRecord::Base
   attr_accessible :announcement
 
   def show_announcement?(hidden_announcement_timestamp)
-    announcement.present? &amp;&amp; hidden_announcement_timestamp.to_i != updated_at.to_i
+    announcement.present? && hidden_announcement_timestamp.to_i != updated_at.to_i
   end
 end
 ```
 
-4. Create the announcements controller and hide action, which will create the signed cookie :hidden_announcement with the site’s current updated_at timestamp and a 1-week expiration:
+4\. Create the announcements controller and hide action, which will create the signed cookie :hidden_announcement with the site’s current updated_at timestamp and a 1-week expiration:
 
 ```
 class AnnouncementsController < ApplicationController
@@ -69,19 +69,19 @@ class AnnouncementsController < ApplicationController
 end
 ```
 
-5. Add the hide announcement path to routes:
+5\. Add the hide announcement path to routes:
 
 ```
 match 'announcements/hide', to: 'announcements#hide', as: 'hide_announcement'
 ```
 
-6. Add a hide.js.erb for the JS response, sliding up the announcement banner:
+6\. Add a hide.js.erb for the JS response, sliding up the announcement banner:
 
 ```
 $(".announcement").slideUp();
 ```
 
-7. And don’t forget to apply some styling to that announcement banner:
+7\. And don’t forget to apply some styling to that announcement banner:
 
 ```
 .announcement {

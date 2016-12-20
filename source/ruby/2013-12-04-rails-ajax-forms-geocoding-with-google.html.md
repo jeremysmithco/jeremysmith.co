@@ -49,7 +49,7 @@ I also have a geocoding.js.coffee file with the Geocoding Module and a function 
 
     geocoder = new google.maps.Geocoder()
     searchForm.bind "ajax:before", (event) ->
-      if coordinatesField.val() == "" &amp;&amp; geocoder
+      if coordinatesField.val() == "" && geocoder
         geocoder.geocode({'address':searchField.val()}, (results, status) =>
           if status == google.maps.GeocoderStatus.OK
             coordinatesField.val(results[0].geometry.location)

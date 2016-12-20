@@ -44,7 +44,7 @@ class WordCounter
   private
 
   def strip_erb(text)
-    text.gsub(/&lt;%(?:(?!%&gt;).)+%&gt;/, "")
+    text.gsub(/<%(?:(?!%>).)+%>/, "")
   end
 
   def strip_comments(text)
@@ -52,7 +52,7 @@ class WordCounter
   end
 
   def strip_html(text)
-    sanitize(text, :tags =&gt; [], :attributes =&gt; [])
+    sanitize(text, :tags => [], :attributes => [])
   end
 
   def word_count(text)

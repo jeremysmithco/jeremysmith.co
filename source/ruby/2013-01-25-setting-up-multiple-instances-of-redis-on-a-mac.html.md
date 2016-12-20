@@ -6,11 +6,15 @@ tags:
 
 I'm using [Redis](http://redis.io) on a project and couldn't find a good guide for setting up multiple instances on a Mac. So, I decided to write up how I did it. (You might want this if you need one instance for development and a separate instance for running your test suite.)
 
-1. Install [Homebrew](http://mxcl.github.com/homebrew/) (great package manager for OS X)
+1\. Install [Homebrew](http://mxcl.github.com/homebrew/) (great package manager for OS X)
 
-2. Install Redis package with Homebrew `brew install redis`
+2\. Install Redis package with Homebrew
 
-3. Create separate config files for your instances (in my example, a dev and a test instance).
+```
+brew install redis
+```
+
+3\. Create separate config files for your instances (in my example, a dev and a test instance).
 
 Rename /usr/local/etc/redis.conf to /usr/local/etc/redis-dev.conf and change the following settings:
 
@@ -41,11 +45,10 @@ $REDIS $DEV_CONF_FILE
 $REDIS $TEST_CONF_FILE
 
 StopService
-for pid in $(ps -o pid,command -ax | grep redis-server | awk '!/awk/ &amp;&amp; !/grep/ {print $1}')
+for pid in $(ps -o pid,command -ax | grep redis-server | awk '!/awk/ && !/grep/ {print $1}')
 do
     kill -2 $pid
 done
-
 ```
 
 You may have to set proper ownership on the redis folder, as well:
