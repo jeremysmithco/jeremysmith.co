@@ -99,7 +99,7 @@ nav[role="navigation"] {
   overflow: hidden;
 }
 
-#logo {
+.logo {
   background: image-url("layout/logo.png") no-repeat 0 0;
   @include image-2x(image-path("layout/logo2x.png"), 105px, 91px);
   display: block;
@@ -379,7 +379,7 @@ footer {
   }
 
   nav[role="navigation"] {
-    #logo {
+    .logo {
       width: 120px;
       float: left;
     }
