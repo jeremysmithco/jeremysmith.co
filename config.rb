@@ -6,7 +6,9 @@ activate :directory_indexes
 activate :sprockets
 
 set :markdown_engine, :redcarpet
-set :markdown, tables: true, autolink: true, gh_blockcode: true, fenced_code_blocks: true, with_toc_data: true
+set :markdown, no_intra_emphasis: true, tables: true, autolink: true,
+               gh_blockcode: true, fenced_code_blocks: true,
+               with_toc_data: true, smartypants: true
 
 configure :development do
   activate :livereload
@@ -27,6 +29,13 @@ end
 activate :blog do |blog|
   blog.name = "web"
   blog.prefix = "web"
+  blog.layout = "layouts/blog"
+  blog.permalink = "{year}-{month}-{day}-{title}.html"
+end
+
+activate :blog do |blog|
+  blog.name = "personal"
+  blog.prefix = "personal"
   blog.layout = "layouts/blog"
   blog.permalink = "{year}-{month}-{day}-{title}.html"
 end
