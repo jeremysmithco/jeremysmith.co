@@ -7,6 +7,7 @@ page '/*.txt', layout: false
 
 activate :directory_indexes
 activate :sprockets
+activate :dotenv
 
 set :relative_links, false
 set :markdown_engine, :redcarpet
@@ -105,7 +106,8 @@ activate :deploy do |deploy|
   deploy.build_before = true
   deploy.deploy_method = :rsync
   deploy.clean = true
-  deploy.user = "deploy"
-  deploy.host = ""
-  deploy.path = ""
+  deploy.user = ENV["DEPLOY_USER"]
+  deploy.host = ENV["DEPLOY_HOST"]
+  deploy.port = ENV["DEPLOY_PORT"]
+  deploy.path = ENV["DEPLOY_PATH"]
 end

@@ -1,5 +1,0 @@
-development: &development
-  user: deploy
-  path: /var/www/jeremysmith.co
-build:
-  <<: *development
