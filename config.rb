@@ -35,7 +35,6 @@ end
 
 page '/about.html', layout: false
 
-redirect "rss", to: "feed.rss"
 redirect "post/134874453155.html", to: "posts/2015-12-09-custom-currency-input-for-simple-form.html"
 redirect "post/134874453155/custom-currency-input-for-simple-form.html", to: "posts/2015-12-09-custom-currency-input-for-simple-form.html"
 redirect "post/134482821790.html", to: "posts/2015-12-03-how-to-mark-optional-form-fields-with-simple-form.html"
