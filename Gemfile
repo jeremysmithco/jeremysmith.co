@@ -9,3 +9,4 @@ gem 'middleman-dotenv'
 
 gem 'redcarpet'
 gem 'nokogiri'
+gem 'builder'
