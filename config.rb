@@ -33,6 +33,20 @@ activate :blog do |blog|
   blog.per_page = 10
 end
 
+activate :blog do |blog|
+  blog.name = "reading"
+  blog.prefix = "reading"
+  blog.layout = "layouts/blog"
+  blog.permalink = "{year}-{month}-{day}-{title}.html"
+end
+
+activate :blog do |blog|
+  blog.name = "watching"
+  blog.prefix = "watching"
+  blog.layout = "layouts/blog"
+  blog.permalink = "{year}-{month}-{day}-{title}.html"
+end
+
 page '/about.html', layout: false
 
 redirect "post/134874453155.html", to: "posts/2015-12-09-custom-currency-input-for-simple-form.html"

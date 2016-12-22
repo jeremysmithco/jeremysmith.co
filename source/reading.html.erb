@@ -1,0 +1,19 @@
+---
+title: Reading
+---
+
+<h1>Reading</h1>
+
+<% blog("reading").articles.each do |article| %>
+  <div class="post">
+    <h2><%= article.title %></h2>
+
+    <p class="meta">
+      <%= article.date.strftime("%B %e, %Y") %>
+    </p>
+
+    <%= image_tag "reading/#{article.data.image}" %>
+
+    <%= article.summary %>
+  </div>
+<% end %>
