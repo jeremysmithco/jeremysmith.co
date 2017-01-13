@@ -1,0 +1,86 @@
+---
+title: Poor man’s inbound email processing in Rails with the Mail gem and Gmail
+date: 2017-01-13 20:41 UTC
+tags: ruby
+---
+
+Most Rails developers seem to be using transactional email services to handle their inbound email processing needs these days. See services like [Postmark](http://developer.postmarkapp.com/developer-inbound-webhook.html), [SendGrid](https://sendgrid.com/docs/API_Reference/Webhooks/parse.html), and [Mandrill](https://mandrill.zendesk.com/hc/en-us/categories/200277247-Inbound-Email-Processing), which can all send webhook requests to your application whenever an email is received.
+
+But what if you're on a limited budget, or can't use one of these services for some other reason? Here's a simple approach using POP checking on a Gmail account with the Mail gem.
+
+First, you need to configure your Gmail account to allow for POP checking. Log into your Gmail account and go to Settings > Forwarding and POP/IMAP.
+
+1. Under #1, select the radio button "Enable POP for mail that arrives from now on" option.
+2. Under #2, select the dropdown option to "delete Gmail's copy" when messages are access with POP. (This will cause those inbound emails to go to Gmail Trash, where they will be permanently removed after 30 days.)
+3. Click "Save Changes"
+
+<%= image_tag "blog/gmail_settings.png" %>
+
+Next, you need to set up a Rake task that you can run under your Rails application. At a bare minimum, you need to set Mail's retriever to your Gmail POP account with `retriever_method`, and then access some number of messages with from that account with the `find_and_delete` method and send them to your ActionMailer receiver class (in this case, `MailReceiver`).
+
+I like to log Rake tasks like this to a separate log file (see the `logger` variable is set at the top of the task), and send rescued errors to my log and to ExceptionNotifier (see the section under `rescue => e`).
+
+```
+namespace :inbound do
+  desc "Process inbound emails"
+  task process: :environment do
+    logger = Logger.new(Rails.root.join("log/inbound.log"))
+
+    begin
+      logger.info "Processing: #{Time.zone.now}"
+
+      Mail.defaults do
+        retriever_method(
+          :pop3,
+          address: Rails.application.secrets.inbound["server"],
+          port: Rails.application.secrets.inbound["port"],
+          enable_ssl: true,
+          user_name: Rails.application.secrets.inbound["username"],
+          password: Rails.application.secrets.inbound["password"]
+        )
+      end
+
+      Mail.find_and_delete(count: 100).each do |message|
+        MailReceiver.receive(message)
+      end
+    rescue => e
+      logger.error e
+      ExceptionNotifier.notify_exception(e)
+    end
+  end
+end
+```
+
+Since POP checking is a polling solution, you need to schedule this Rake task to run regularly and check your POP account. I'd recommend using the [whenever](https://github.com/javan/whenever) gem. In your `schedule.rb` file, you can set your rake task to run at specific times or on a specific interval, like every 5 minutes.
+
+```
+case @environment
+when "production"
+  every 5.minutes do
+    rake "inbound:process"
+  end
+end
+```
+
+Finally, you need to set up your ActionMailer receiver class. If you're not familiar with this, check out the ActionMailer Rails Guide section on [Receiving Emails](http://guides.rubyonrails.org/action_mailer_basics.html#receiving-emails) as a starting place. Your Rake task above sends the email to the `receive` method, where it can be parsed and acted upon however you see fit.
+
+```
+class MailReceiver < ActionMailer::Base
+  def receive(email)
+    #
+    # Do your thing with inbound emails here... :)
+    #
+  rescue => e
+    logger.error e
+    ExceptionNotifier.notify_exception(e)
+  end
+
+  private
+
+  def logger
+    @logger ||= Logger.new(Rails.root.join("log/mail_receiver.log"))
+  end
+end
+```
+
+If you need more sophisticated inbound mail routing, you should take a look at the [Mailman](https://github.com/mailman/mailman) gem.
