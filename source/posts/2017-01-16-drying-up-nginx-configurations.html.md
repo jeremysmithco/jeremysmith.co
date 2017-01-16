@@ -1,7 +1,7 @@
 ---
 title: DRYing up Nginx configurations
 date: 2017-01-16 22:08 UTC
-tags:
+tags: ruby
 ---
 
 I have a web server that hosts quite a few [Middleman](https://middlemanapp.com/) sites via Nginx. Since the sites are very similar, their Nginx configuration is largely the same. I recently moved common configurations into a separate include file, which has made it easier to understand the differences between site configuration files, and has simplified making changes that should apply across all sites.
