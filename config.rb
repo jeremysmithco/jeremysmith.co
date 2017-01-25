@@ -13,7 +13,7 @@ set :relative_links, false
 set :markdown_engine, :redcarpet
 set :markdown, no_intra_emphasis: true, tables: true, autolink: true,
                gh_blockcode: true, fenced_code_blocks: true,
-               with_toc_data: true, smartypants: true
+               with_toc_data: true, smartypants: true, hard_wrap: true
 
 configure :development do
   activate :livereload
