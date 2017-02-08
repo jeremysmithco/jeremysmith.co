@@ -4,16 +4,27 @@ title: Reading
 
 <h1>Reading</h1>
 
-<% blog("reading").articles.each do |article| %>
-  <div class="post">
-    <h2><%= article.title %></h2>
+<% data.reading.sort_by { |r| r.date }.reverse.each do |book| %>
+  <h3><%= book.title %></h3>
+  <p class="meta">
+    <%= book.date.strftime("%B %e, %Y") %>
+  </p>
+<% end %>
 
-    <p class="meta">
-      <%= article.date.strftime("%B %e, %Y") %>
-    </p>
+<% if blog("reading").articles.any? %>
+  <h2>Posts about Reading</h2>
 
-    <%= image_tag "reading/#{article.data.image}" %>
+  <% blog("reading").articles.each do |article| %>
+    <div class="post">
+      <h3><%= article.title %></h3>
 
-    <%= article.summary %>
-  </div>
+      <p class="meta">
+        <%= article.date.strftime("%B %e, %Y") %>
+      </p>
+
+      <%= image_tag "reading/#{article.data.image}" %>
+
+      <%= article.summary %>
+    </div>
+  <% end %>
 <% end %>
