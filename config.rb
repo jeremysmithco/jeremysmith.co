@@ -1,3 +1,7 @@
+$LOAD_PATH.unshift("#{File.dirname(__FILE__)}/lib")
+require "custom_helpers"
+helpers CustomHelpers
+
 # Fix for "comparison of String with :current_path failed" error
 Tilt::SYMBOL_ARRAY_SORTABLE = false
 
