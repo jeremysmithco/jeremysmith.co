@@ -1,7 +1,7 @@
 ---
 title: Managing Redirects in Middleman
 date: 2017-02-14 18:55 UTC
-tags:
+tags: ruby, middleman
 ---
 
 If you need to maintain redirects for old pages in a [Middleman](https://middlemanapp.com/) site, you can do so by adding something like this to your config file:
