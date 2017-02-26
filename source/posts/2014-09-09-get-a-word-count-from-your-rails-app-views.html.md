@@ -64,4 +64,4 @@ end
 WordCounter.new(ARGV[0])
 ```
 
-Here’s the [gist on Github](https://gist.github.com/bentoncreation/9cf106e591e78de282fb).
+Here’s the [gist on Github](https://gist.github.com/jeremysmithco/9cf106e591e78de282fb).
