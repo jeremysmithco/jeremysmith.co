@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/bentoncreation/middleman-deploy.git
+  remote: https://github.com/jeremysmithco/middleman-deploy.git
   revision: db1ce83c99840bfb9d1a46e064710ce470898189
   branch: fix_user_assignment
   specs:
@@ -102,7 +102,7 @@ GEM
     minitest (5.10.1)
     net-sftp (2.1.2)
       net-ssh (>= 2.6.5)
-    net-ssh (3.2.0)
+    net-ssh (4.1.0)
     nokogiri (1.6.8.1)
       mini_portile2 (~> 2.1.0)
     padrino-helpers (0.13.3.3)
