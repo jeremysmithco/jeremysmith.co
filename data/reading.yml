@@ -14,3 +14,15 @@
   date: 2017-02-11
 - title: Frontend-friendly Rails
   date: 2017-02-18
+- title: The Pragmatic Programmer
+  date: 2017-02-25
+  notes: |
+    * Your software is going to be tested, if not by your tests, then by users.
+    * Separate requirements from policy (policies change, so keep these in metadata or configuration)
+    * Create a project glossary that everyone uses for consistency
+    * Some things are better done than described
+    * If you document requirements in a way that an end user can understand, then there's no one to verify they are correct, because they must be interpreted back to them.
+    * Successful teams speak with a unified voice and have their own brand/identity
+    * A team librarian indexes and stores code and documentation, and is the port of call when looking for things.
+    * Suprise your users with just a little bit more than they were expecting.
+

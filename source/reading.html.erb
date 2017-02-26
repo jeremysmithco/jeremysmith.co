@@ -9,6 +9,11 @@ title: Reading
   <p class="meta">
     <%= book.date.strftime("%B %e, %Y") %>
   </p>
+
+  <% if book.notes.present? %>
+    <h4>Notes</h4>
+    <%= markdown(book.notes) %>
+  <% end %>
 <% end %>
 
 <% if blog("reading").articles.any? %>
