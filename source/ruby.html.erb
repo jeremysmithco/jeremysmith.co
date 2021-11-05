@@ -5,9 +5,4 @@ blog: posts
 
 <h1>Ruby &amp; Rails Posts</h1>
 
-<% blog.articles.select { |a| a.data[:tags].include? "ruby" }.each do |article| %>
-  <h2><%= link_to article.title, article.path %></h2>
-  <p class="meta">
-    <%= article.date.strftime("%B %e, %Y at %l:%M %P") %>
-  </p>
-<% end %>
+<p>Visit the <a href="https://hybrd.co/posts">HYBRD blog</a> for Ruby &amp; Rails posts.</p>
