@@ -114,39 +114,12 @@ redirect "post/43279968599/google-docs-gadget-fix.html", to: "posts/2011-12-01-g
 redirect "post/43279873217.html", to: "posts/2011-11-02-pow-awesomeness-for-php-static-sites.html"
 redirect "post/43279873217/pow-awesomeness-for-php-static-sites.html", to: "posts/2011-11-02-pow-awesomeness-for-php-static-sites.html"
 
-# Redirects to hybrd.co
-
-redirect "posts/2017-05-05-managing-sidekiq-processes-with-upstart/index.html", to: "https://hybrd.co/posts/managing-sidekiq-processes-with-upstart"
-redirect "posts/2017-04-25-better-sql-in-ruby-with-the-sql_query-gem/index.html", to: "https://hybrd.co/posts/better-sql-in-ruby-with-the-sql-query-gem"
-redirect "posts/2017-04-01-returning-the-greater-of-two-date-fields-where-either-could-be-null/index.html", to: "https://hybrd.co/posts/returning-the-greater-of-two-date-fields-where-either-could-be-null"
-redirect "posts/2017-03-28-handy-sql-functions-for-self-referencing-tables/index.html", to: "https://hybrd.co/posts/handy-sql-functions-for-self-referencing-tables"
-redirect "posts/2017-03-18-five-types-of-internal-documentation-needed-for-software-teams/index.html", to: "https://hybrd.co/posts/five-types-of-internal-documentation-needed-for-software-teams"
-redirect "posts/2017-03-10-using-the-dentaku-gem-to-manage-business-policies-outside-of-your-codebase/index.html", to: "https://hybrd.co/posts/using-the-dentaku-gem-to-manage-business-policies-outside-of-your-codebase"
-redirect "posts/2017-03-08-client-collaboration/index.html", to: "https://hybrd.co/posts/client-collaboration"
-redirect "posts/2017-02-24-making-static-sites-dynamic-somewhat/index.html", to: "https://hybrd.co/posts/making-static-sites-dynamic-somewhat"
-redirect "posts/2017-02-22-a-reusable-sjr-approach-in-rails/index.html", to: "https://hybrd.co/posts/a-reusable-sjr-approach-in-rails"
-redirect "posts/2017-02-14-managing-redirects-in-middleman/index.html", to: "https://hybrd.co/posts/managing-redirects-in-middleman"
-redirect "posts/2017-02-08-table_of_contents_helper_for_markdown_in_middleman/index.html", to: "https://hybrd.co/posts/table-of-contents-helper-for-markdown-in-middleman"
-redirect "posts/2017-01-16-drying-up-nginx-configurations/index.html", to: "https://hybrd.co/posts/drying-up-nginx-configurations"
-redirect "posts/2017-01-13-poor-man-s-inbound-email-processing-in-rails/index.html", to: "https://hybrd.co/posts/poor-mans-inbound-email-processing-in-rails-with-the-mail-gem-and-gmail"
-redirect "posts/2015-12-09-custom-currency-input-for-simple-form/index.html", to: "https://hybrd.co/posts/custom-currency-input-for-simple-form"
-redirect "posts/2015-12-03-how-to-mark-optional-form-fields-with-simple-form/index.html", to: "https://hybrd.co/posts/how-to-mark-optional-form-fields-with-simple-form"
-redirect "posts/2015-05-20-auto-generate-navigation-from-page-headers-in-middleman/index.html", to: "https://hybrd.co/posts/auto-generate-navigation-from-page-headers-in-middleman"
-redirect "posts/2015-05-04-a-simple-interface-for-the-controller-context-in-your-rails-app/index.html", to: "https://hybrd.co/posts/a-simple-interface-for-the-controller-context-in-your-rails-app"
-redirect "posts/2015-03-11-how-to-add-high-voltage-static-pages-to-your-sitemap-file/index.html", to: "https://hybrd.co/posts/how-to-add-high-voltage-static-pages-to-your-sitemap-file"
-redirect "posts/2015-02-12-active-record-enum-form-select/index.html", to: "https://hybrd.co/posts/active-record-enum-form-select"
-redirect "posts/2014-09-09-get-a-word-count-from-your-rails-app-views/index.html", to: "https://hybrd.co/posts/get-a-word-count-from-your-rails-app-views"
-redirect "posts/2014-09-05-a-tumblr-theme-development-workflow/index.html", to: "https://hybrd.co/posts/a-tumblr-theme-development-workflow"
-redirect "posts/2014-07-19-simple-site-wide-announcements-in-rails//index.html", to: "https://hybrd.co/posts/simple-site-wide-announcements-in-rails"
-redirect "posts/2014-01-24-devise-cas-using-devisecasauthenticatable-and-casino/index.html", to: "https://hybrd.co/posts/devise-cas-using-devise-cas-authenticatable-and-casino"
-redirect "posts/2013-12-04-rails-ajax-forms-geocoding-with-google/index.html", to: "https://hybrd.co/posts/rails-ajax-forms-geocoding-with-google"
-redirect "posts/2013-01-25-setting-up-multiple-instances-of-redis-on-a-mac/index.html", to: "https://hybrd.co/posts/setting-up-multiple-instances-of-redis-on-a-mac"
-redirect "posts/2011-11-02-pow-awesomeness-for-php-static-sites/index.html", to: "https://hybrd.co/posts/pow-awesomeness-for-php-static-sites"
-
 configure :build do
   activate :minify_css
   activate :minify_javascript
   activate :asset_hash
+
+  import_file File.expand_path("_redirects", config[:source]), "/_redirects"
 end
 
 activate :deploy do |deploy|
