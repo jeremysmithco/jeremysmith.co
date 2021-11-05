@@ -58,8 +58,8 @@ header[role="banner"] {
   margin: -45px 0 15px 0;
 
   a {
-    border: 0;
     color: #fff;
+    border-bottom: 1px solid #ff6c6c;
   }
 }
 
@@ -165,7 +165,7 @@ aside p {
 
 aside h2 {
   font-size: 16px;
-  margin-top: 35px; /*6/11*/
+  margin: 16px 0 8px 0;
 }
 
 aside ol li {
@@ -262,6 +262,7 @@ div#hidden article {
 
   h1 {
     font-size: 20px;
+    font-weight: 400;
     color: #fff;
   }
 
@@ -332,10 +333,9 @@ img.fluid {
 
 .me {
   background: image-url("layout/me.jpg") no-repeat 0 0;
-  @include image-2x(image-path("layout/me2x.jpg"), 210px, 140px);
+  @include image-2x(image-path("layout/me2x.jpg"), 210px, 210px);
   width: 210px;
-  height: 140px;
-  margin: 10px 0;
+  height: 210px;
 }
 
 /* footer */

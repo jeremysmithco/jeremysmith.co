@@ -113,6 +113,7 @@ redirect "post/43279968599.html", to: "posts/2011-12-01-google-docs-gadget-fix.h
 redirect "post/43279968599/google-docs-gadget-fix.html", to: "posts/2011-12-01-google-docs-gadget-fix.html"
 redirect "post/43279873217.html", to: "posts/2011-11-02-pow-awesomeness-for-php-static-sites.html"
 redirect "post/43279873217/pow-awesomeness-for-php-static-sites.html", to: "posts/2011-11-02-pow-awesomeness-for-php-static-sites.html"
+redirect "work.html", to: "https://hybrd.co/"
 
 configure :build do
   activate :minify_css
