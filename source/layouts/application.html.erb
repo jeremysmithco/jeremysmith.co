@@ -9,7 +9,7 @@
     <meta name="description" content="" />
 
     <%= favicon_tag "favicon.png" %>
-    <link rel="alternate" type="application/rss+xml" href="{RSS}">
+    <link rel="alternate" type="application/rss+xml" href="/feed.rss">
 
     <!--[if ! lte IE 6]><!-->
       <%= stylesheet_link_tag "all" %>
@@ -90,7 +90,7 @@
           </article>
 
           <footer>
-            <p>Copyright &copy; <%= Time.zone.now.year %>. <a href="/">Jeremy Smith</a>. All rights reserved. <a href="/rss">Subscribe via RSS</a></p>
+            <p>Copyright &copy; <%= Time.zone.now.year %>. <a href="/">Jeremy Smith</a>. All rights reserved. <a href="/feed.rss">Subscribe via RSS</a></p>
           </footer>
 
         </div>
